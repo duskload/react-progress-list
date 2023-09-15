@@ -1,0 +1,43 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.progress-main {
+  position: relative;
+  padding: 30px 50px;
+  background-color: $white;
+
+  min-width: 375px;
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 20px;
+
+  &--add-new-section {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    &.disabled {
+      pointer-events: none;
+    }
+
+    .MuiSvgIcon-root {
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &--title {
+    color: $black;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  &--content {
+    margin-top: 15px;
+  }
+}

@@ -1,0 +1,23 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.tasks-list {
+  padding-left: 15px;
+
+  &--item {
+    &:first-child {
+      margin-top: 15px;
+    }
+    font-size: 15px;
+    font-weight: 500;
+    color: $defaultGrey;
+    margin: 8px 0;
+
+    .MuiSvgIcon-root {
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+  }
+}

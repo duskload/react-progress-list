@@ -1,0 +1,72 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.section-header {
+  flex-direction: column;
+  margin: 15px 0;
+
+  .section-header-title {
+    @include flex-center-vertical;
+    justify-content: space-between;
+
+    &--text-container {
+      @include flex-center-vertical;
+      .text-container-number {
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+
+        color: $white;
+
+        background-color: $black;
+
+        letter-spacing: 0;
+        font-weight: 700;
+        font-style: normal;
+        line-height: normal;
+        text-transform: uppercase;
+
+        @include flex-center;
+      }
+
+      .text-container-text {
+        margin-left: 15px;
+        color: $defaultGrey;
+        font-size: 25px;
+        font-weight: bold;
+      }
+    }
+
+    &--icons {
+      @include flex-center-vertical;
+      margin-left: 15px;
+    }
+  }
+
+  .section-header-content {
+    display: flex;
+    align-self: flex-start;
+    width: 100%;
+
+    .tasks-list {
+      padding: 0;
+      margin: 0;
+
+      list-style: none;
+
+      &-item {
+        &:first-child {
+          margin-top: 15px;
+        }
+        @include flex-center-vertical;
+        &-checkbox {
+
+        }
+
+        &-text {
+
+        }
+      }
+    }
+  }
+}

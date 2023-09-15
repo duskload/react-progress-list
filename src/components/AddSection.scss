@@ -1,0 +1,19 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.add-section-container {
+  margin-top: 20px;
+  display: flex;
+  @include flex-center-vertical;
+
+  &--button {
+    margin-left: 20px;
+  }
+
+  .MuiSvgIcon-root {
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+}
