@@ -68,18 +68,32 @@ export function SectionHeader({
       items.push(value);
     }
 
-    if (tasks.length === items.length && hasCheckedTasks && hasTasks) {
-      onSetCompletedPhase(id);
-      onSetActivePhase(id + 1);
-    }
+    console.log('before', {
+      cond: tasks.length === items.length && hasTasks,
+      id, tasks, items, hasTasks, hasCheckedTasks
+    })
 
     setChecked(items);
+
+    if (tasks.length === items.length && hasTasks) {
+      onSetCompletedPhase(id);
+      console.log('is setting it complete', {id, tasks, items, hasTasks, hasCheckedTasks })
+      if (completedPhases.length < 3) {
+        onSetActivePhase(id + 1);
+      }
+    }
+
 
     const newChecked = { ...allStoredCheckedTasks };
     newChecked[id] = items;
 
     StorageUtil.set(STORAGE_KEYS.checkedTasksKey, newChecked);
   };
+
+  const onRemoveChecked = (id: string) => {
+    const newChecked = checked.filter(checkedId => checkedId !== id)
+    setChecked(newChecked)
+  }
 
   const openAddTasksModal = (id: number) => {
     setAddTasksModalVisible(true);
@@ -133,6 +147,7 @@ export function SectionHeader({
         edit={hasTasks}
         items={tasks}
         sectionId={id}
+        onRemoveChecked={onRemoveChecked}
         isPhaseCompleted={isPhaseCompleted}
         onUndoPhaseCompletion={onUndoPhaseCompletion}
         onAddTasks={onAddTasks}

@@ -20,6 +20,7 @@ type TCreateTasksModal = {
   sectionId: number;
   onUndoPhaseCompletion: (id: number) => void;
   isPhaseCompleted: boolean;
+  onRemoveChecked: (id: string) => void;
 };
 
 export default function CreateTasksModal({
@@ -31,6 +32,7 @@ export default function CreateTasksModal({
   sectionId,
   isPhaseCompleted,
   onUndoPhaseCompletion,
+                                           onRemoveChecked,
 }: TCreateTasksModal) {
   const [tasks, setTasks] = useState<TTask[]>(items);
 
@@ -47,6 +49,7 @@ export default function CreateTasksModal({
   const onRemoveTask = (id: string) => {
     const newTasks = [...tasks.filter((task) => task.id !== id)];
     setTasks(newTasks);
+    onRemoveChecked(id)
 
     if (isPhaseCompleted) {
       onUndoPhaseCompletion(sectionId);

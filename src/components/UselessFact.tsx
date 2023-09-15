@@ -33,7 +33,7 @@ export function UselessFact({ shouldGetQuote = false }: TUselessFact) {
     }
   }, [shouldGetQuote]);
 
-  if (!text) return null;
+  if (!text || !shouldGetQuote) return null;
 
   return (
     <div className="useless-fact-container">
