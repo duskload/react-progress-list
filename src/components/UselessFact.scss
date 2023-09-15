@@ -1,0 +1,12 @@
+
+@import "styles/variables";
+@import "styles/mixins";
+
+.useless-fact-container {
+  margin: 20px 0;
+
+  &--text {
+    font-size: 14px;
+
+  }
+}

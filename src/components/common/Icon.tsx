@@ -5,7 +5,7 @@ type TIcon = {
   Component: React.ElementType;
   color?: string;
   onClick?: () => void;
-}
+};
 
 export function Icon({ Component, color, onClick }: TIcon) {
   return (

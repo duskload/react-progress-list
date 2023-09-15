@@ -34,7 +34,7 @@ export function SectionHeader({
 
   const hasTasks = tasks.length > 0;
   const isActivePhase = activePhase === id;
-  const isPhaseCompleted = completedPhases.includes(id)
+  const isPhaseCompleted = completedPhases.includes(id);
   const hasCheckedTasks = checked.length > 0;
 
   const onAddTasks = (items: TTask[]) => {
@@ -53,8 +53,8 @@ export function SectionHeader({
     }
 
     if (tasks.length === items.length && hasCheckedTasks && hasTasks) {
-      onSetCompletedPhase(id)
-      onSetActivePhase(id + 1)
+      onSetCompletedPhase(id);
+      onSetActivePhase(id + 1);
     }
 
     setChecked(items);
@@ -65,8 +65,7 @@ export function SectionHeader({
     onSetActivePhase(id);
   };
 
-
-  const isActiveOrCompletedPhase = isPhaseCompleted || isActivePhase
+  const isActiveOrCompletedPhase = isPhaseCompleted || isActivePhase;
 
   return (
     <div className="section-header">

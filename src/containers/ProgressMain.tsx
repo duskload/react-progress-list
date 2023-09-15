@@ -3,6 +3,7 @@ import { SectionHeader } from "../components/SectionHeader";
 import { SectionsMap } from "../constants/constants";
 
 import "./ProgressMain.scss";
+import {UselessFact} from "../components/UselessFact";
 
 function ProgressMain() {
   const [completedPhases, setCompletedPhases] = useState<number[]>([]);
@@ -49,6 +50,8 @@ function ProgressMain() {
           {...commonProps}
         />
       </div>
+
+      <UselessFact shouldGetQuote={completedPhases.length === 3} />
     </div>
   );
 }
