@@ -6,6 +6,8 @@ import CreateTasksModal from "../modals/CreateTasksModal";
 import { TTask } from "../constants/types";
 import { TaskMenu } from "./TaskMenu";
 import { Icon } from "./common/Icon";
+import { StorageUtil } from "../utils/storage";
+import { STORAGE_KEYS } from "../constants/constants";
 
 import "./SectionHeader.scss";
 
@@ -26,19 +28,31 @@ export function SectionHeader({
   activePhase,
   onSetActivePhase,
 }: TSectionHeader) {
+  const allStoredTasks = StorageUtil.get(STORAGE_KEYS.phasesTasksKey) || {};
+  const allStoredCheckedTasks =
+    StorageUtil.get(STORAGE_KEYS.checkedTasksKey) || {};
+
+  const storageTasks = allStoredTasks?.[id] || [];
+  const storageCheckedTasks = allStoredCheckedTasks?.[id] || [];
+
   const [menuOpen, setMenuOpen] = useState(false);
-  const [checked, setChecked] = useState<string[]>([]);
+  const [checked, setChecked] = useState<string[]>(storageCheckedTasks);
 
   const [isAddTasksModalVisible, setAddTasksModalVisible] = useState(false);
-  const [tasks, setTasks] = useState<TTask[]>([]);
+  const [tasks, setTasks] = useState<TTask[]>(storageTasks);
 
-  const hasTasks = tasks.length > 0;
+  const hasTasks = tasks?.length > 0;
   const isActivePhase = activePhase === id;
   const isPhaseCompleted = completedPhases.includes(id);
-  const hasCheckedTasks = checked.length > 0;
+  const hasCheckedTasks = checked?.length > 0;
 
   const onAddTasks = (items: TTask[]) => {
     setTasks(items);
+
+    const newTasks = { ...allStoredTasks };
+
+    newTasks[id] = items;
+    StorageUtil.set(STORAGE_KEYS.phasesTasksKey, newTasks);
   };
 
   const onCheckTask = (item: TTask) => {
@@ -58,6 +72,11 @@ export function SectionHeader({
     }
 
     setChecked(items);
+
+    const newChecked = { ...allStoredCheckedTasks };
+    newChecked[id] = items;
+
+    StorageUtil.set(STORAGE_KEYS.checkedTasksKey, newChecked);
   };
 
   const openAddTasksModal = (id: number) => {
@@ -90,14 +109,13 @@ export function SectionHeader({
 
       <div className="section-header-content">
         <ul className="tasks-list">
-          {tasks.map((item: TTask, index: number) => {
+          {tasks?.map((item: TTask, index: number) => {
             return (
               <li className="tasks-list-item">
                 <div className="tasks-list-item-checkbox">
                   <Checkbox
-                    checked={checked.indexOf(item.id) !== -1}
+                    checked={checked?.indexOf(item.id) !== -1}
                     onChange={() => onCheckTask(item)}
-                    value={item.completed}
                   />
                 </div>
                 <div className="tasks-list-item-text">{item.text}</div>

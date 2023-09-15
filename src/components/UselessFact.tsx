@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Paper from "@mui/material/Paper";
 
 import "./UselessFact.scss";
 
@@ -36,7 +37,9 @@ export function UselessFact({ shouldGetQuote = false }: TUselessFact) {
 
   return (
     <div className="useless-fact-container">
-      <span className="useless-fact-container--text">{text}</span>
+      <Paper elevation={4} style={{ padding: 8 }}>
+        <span className="useless-fact-container--text">{text}</span>
+      </Paper>
     </div>
   );
 }

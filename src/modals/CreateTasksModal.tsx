@@ -32,7 +32,7 @@ export default function CreateTasksModal({
   };
 
   const onAddTask = (text: string) => {
-    const updatedTasks = [...tasks, { id: uuidv4(), text, completed: false }];
+    const updatedTasks = [...tasks, { id: uuidv4(), text }];
     setTasks(updatedTasks);
   };
 

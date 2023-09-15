@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 import { SectionHeader } from "../components/SectionHeader";
-import { SectionsMap } from "../constants/constants";
+import { SectionsMap, STORAGE_KEYS } from "../constants/constants";
+import { UselessFact } from "../components/UselessFact";
+import { StorageUtil } from "../utils/storage";
 
 import "./ProgressMain.scss";
-import {UselessFact} from "../components/UselessFact";
+
+const { completedPhasesKey, activePhaseKey } = STORAGE_KEYS;
 
 function ProgressMain() {
-  const [completedPhases, setCompletedPhases] = useState<number[]>([]);
-  const [activePhase, setActivePhase] = useState<number>(
-    SectionsMap.foundation
+  const storageCompletedPhases = StorageUtil.get(completedPhasesKey) || [];
+  const storageActivePhase =
+    StorageUtil.get(activePhaseKey) || SectionsMap.foundation;
+
+  const [completedPhases, setCompletedPhases] = useState<number[]>(
+    storageCompletedPhases
   );
+  const [activePhase, setActivePhase] = useState<number>(storageActivePhase);
   const onSetCompletedPhase = (id: number) => {
     const phases = [...completedPhases];
     phases.push(id);
 
     setCompletedPhases(phases);
+    StorageUtil.set(completedPhasesKey, phases);
   };
 
   const onSetActivePhase = (id: number) => {
     setActivePhase(id);
+    StorageUtil.set(activePhaseKey, id);
   };
 
   const commonProps = {
