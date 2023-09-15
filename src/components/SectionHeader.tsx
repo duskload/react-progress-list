@@ -16,6 +16,7 @@ type TSectionHeader = {
   text: string;
   completedPhases: number[];
   onSetCompletedPhase: (id: number) => void;
+  onUndoPhaseCompletion: (id: number) => void;
   onSetActivePhase: (id: number) => void;
   activePhase: number;
 };
@@ -27,6 +28,7 @@ export function SectionHeader({
   onSetCompletedPhase,
   activePhase,
   onSetActivePhase,
+  onUndoPhaseCompletion,
 }: TSectionHeader) {
   const allStoredTasks = StorageUtil.get(STORAGE_KEYS.phasesTasksKey) || {};
   const allStoredCheckedTasks =
@@ -129,6 +131,10 @@ export function SectionHeader({
         visible={isAddTasksModalVisible}
         onClose={() => setAddTasksModalVisible(false)}
         edit={hasTasks}
+        items={tasks}
+        sectionId={id}
+        isPhaseCompleted={isPhaseCompleted}
+        onUndoPhaseCompletion={onUndoPhaseCompletion}
         onAddTasks={onAddTasks}
       />
     </div>

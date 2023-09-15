@@ -25,6 +25,12 @@ function ProgressMain() {
     StorageUtil.set(completedPhasesKey, phases);
   };
 
+  const onUndoPhaseCompletion = (id: number) => {
+    const phases = completedPhases.filter(phase => phase !== id)
+    setCompletedPhases(phases)
+    StorageUtil.set(completedPhasesKey, phases);
+  }
+
   const onSetActivePhase = (id: number) => {
     setActivePhase(id);
     StorageUtil.set(activePhaseKey, id);
@@ -35,6 +41,7 @@ function ProgressMain() {
     onSetCompletedPhase,
     activePhase,
     onSetActivePhase,
+    onUndoPhaseCompletion,
   };
 
   return (

@@ -7,9 +7,6 @@
     <list default="true" id="837d1ef1-e815-4e47-93ba-e0ecf06c9ce0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SectionHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SectionHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UselessFact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UselessFact.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/ProgressMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ProgressMain.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modals/CreateTasksModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/CreateTasksModal.tsx" afterDir="false" />
     </list>
@@ -66,7 +63,7 @@
       <workItem from="1694613758327" duration="102000" />
       <workItem from="1694613874813" duration="21904000" />
       <workItem from="1694703555139" duration="5460000" />
-      <workItem from="1694753435896" duration="8490000" />
+      <workItem from="1694753435896" duration="9381000" />
     </task>
     <servers />
   </component>

@@ -16,6 +16,10 @@ type TCreateTasksModal = {
   onClose: () => void;
   onAddTasks: (tasks: TTask[]) => void;
   edit: boolean;
+  items: TTask[];
+  sectionId: number;
+  onUndoPhaseCompletion: (id: number) => void;
+  isPhaseCompleted: boolean;
 };
 
 export default function CreateTasksModal({
@@ -23,8 +27,12 @@ export default function CreateTasksModal({
   onClose,
   onAddTasks,
   edit,
+  items = [],
+  sectionId,
+  isPhaseCompleted,
+  onUndoPhaseCompletion,
 }: TCreateTasksModal) {
-  const [tasks, setTasks] = useState<TTask[]>([]);
+  const [tasks, setTasks] = useState<TTask[]>(items);
 
   const onSubmit = () => {
     onAddTasks(tasks);
@@ -39,6 +47,10 @@ export default function CreateTasksModal({
   const onRemoveTask = (id: string) => {
     const newTasks = [...tasks.filter((task) => task.id !== id)];
     setTasks(newTasks);
+
+    if (isPhaseCompleted) {
+      onUndoPhaseCompletion(sectionId);
+    }
   };
 
   const getListProps = (id: string) => {
